@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+
+    <context-root>/jdg-debugger</context-root>
+
+    <!--
+    ****************************************
+    Configuring HTTP Session Granularity
+    ****************************************
+    SESSION - Stores all session attributes within a single cache entry. This is generally more expensive than ATTRIBUTE granularity, but preserves any cross-attribute object references.
+    ATTRIBUTE - Stores each session attribute within a separate cache entry. This is generally more efficient than SESSION granularity, but does not preserve any cross-attribute object references.
+
+    If your application does not share any object references between attributes, users are strongly advised to use ATTRIBUTE granularity. Using ATTRIBUTE granularity,
+    each session attribute is stored in a separate cache entry. This means that a given request is only required to replicate/persist those attributes that were added/modified/removed/mutated in a given request.
+    For read-heavy applications, this can dramatically reduce the replication/persistence payload per request.
+    -->
+    <replication-config>
+        <!--
+        usage: cache-container.cache
+        <cache-name>web.http-jboss-eap</cache-name>
+        -->
+        <replication-granularity>ATTRIBUTE</replication-granularity>
+    </replication-config>
+
+</jboss-web>

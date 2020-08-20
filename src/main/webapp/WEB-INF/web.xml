@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+    <display-name>jdg-debugger</display-name>
+    <description>JBoss Data Grid Debugger Application</description>
+
+    <distributable/>
+
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
+
+    <context-param>
+        <param-name>jdg_cache</param-name>
+        <param-value>default</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>jdg_serverList</param-name>
+        <param-value>datagrid01:11222;datagrid02:11222</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>
+            com.redhat.jdg.debugger.AppContextListener
+        </listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>DebuggerServlet</servlet-name>
+        <servlet-class>com.redhat.jdg.debugger.DebuggerServlet</servlet-class>
+        <init-param>
+            <param-name>titleMessage</param-name>
+            <param-value>JDG Debugger Servlet</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DebuggerServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>
